@@ -6,6 +6,7 @@ public class Buildings : MonoBehaviour
 {
     [SerializeField] public int hitPoints = 3;
     private GameManager gameManager;
+    public GameObject hitSound;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class Buildings : MonoBehaviour
             hitPoints -= 1;
             Destroy(collision.gameObject);
             gameManager.UpdateScore(-500);
+            hitSound.GetComponent<AudioSource>().Play();
         }
     }
 }

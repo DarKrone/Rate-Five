@@ -33,7 +33,11 @@ public class GameManager : MonoBehaviour
         {
             isGameActive= false;
             gameOverUI.SetActive(true);
-            Time.timeScale = 0f;
+        }
+
+        if (!isGameActive)
+        {
+            buildings.GetComponent<AudioSource>().Pause();
         }
     }
     IEnumerator SpawnTarget()

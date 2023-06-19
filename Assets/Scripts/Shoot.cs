@@ -9,10 +9,11 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameObject aimPoint;
     [SerializeField] private Camera mainCamera;
+    private AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -30,6 +31,7 @@ public class Shoot : MonoBehaviour
 
     private void Fire(Vector2 dir)
     {
+        audioSource.Play();
         GameObject bullet = Instantiate(bulletPrefab);
         bullet.transform.parent = transform.parent;
         bullet.transform.position = aimPoint.transform.position;

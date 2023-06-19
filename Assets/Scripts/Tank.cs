@@ -9,7 +9,10 @@ public class Tank : MonoBehaviour
     [SerializeField] private int enemyHitPoints = 3;
     private GameObject pointToMove;
     [SerializeField] private float moveSpeed = 1f;
-    public GameManager gameManager;
+    private GameManager gameManager;
+    [SerializeField] private GameObject hitSound;
+    [SerializeField] private GameObject deathSound;
+
 
     private void Start()
     {
@@ -18,7 +21,17 @@ public class Tank : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        transform.position += (pointToMove.transform.position - transform.position).normalized * moveSpeed * Time.fixedDeltaTime;
+        if (gameManager.isGameActive)
+        {
+            transform.position += (pointToMove.transform.position - transform.position).normalized * moveSpeed * Time.fixedDeltaTime;
+        }
+        
+
+        if (!gameManager.isGameActive)
+        {
+            GetComponent<Animator>().enabled = false;
+            GetComponent<AudioSource>().Pause();
+        }
     }
 
 
@@ -27,13 +40,21 @@ public class Tank : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             enemyHitPoints--;
+            hitSound.GetComponent<AudioSource>().Play();
             Destroy(collision.gameObject);
             if (enemyHitPoints <= 0)
             {
-                Destroy(gameObject);
+                GetComponent<AudioSource>().Pause();
+                transform.position = new Vector3(100f, -6f, 0f);
+                Invoke("DestroyObject", 1f);
                 gameManager.UpdateScore(100);
+                deathSound.GetComponent<AudioSource>().Play();
             }
         }
     }
 
+    void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
 }
