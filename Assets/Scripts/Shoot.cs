@@ -10,6 +10,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private GameObject aimPoint;
     [SerializeField] private Camera mainCamera;
     private AudioSource audioSource;
+    [SerializeField] private GameObject gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && gameManager.GetComponent<GameManager>().isGameActive)
         {
             Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             mouseWorldPosition.z = 0f;
