@@ -67,4 +67,9 @@ public class GameManager : MonoBehaviour
         score += value;
         scoreText.text = "Score: " + score;
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }
