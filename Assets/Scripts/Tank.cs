@@ -3,19 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tank : MonoBehaviour
 {
     [SerializeField] private int enemyHitPoints = 3;
+    private int maxHP;
     private GameObject pointToMove;
     [SerializeField] private float moveSpeed = 1f;
     private GameManager gameManager;
     [SerializeField] private GameObject hitSound;
     [SerializeField] private GameObject deathSound;
+    [SerializeField] private Image hpBar;
 
 
     private void Start()
     {
+        maxHP = enemyHitPoints;
         pointToMove = GameObject.Find("Point To Move");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
@@ -41,6 +45,7 @@ public class Tank : MonoBehaviour
         {
             enemyHitPoints--;
             hitSound.GetComponent<AudioSource>().Play();
+            ChangeHPBar();
             Destroy(collision.gameObject);
             if (enemyHitPoints <= 0)
             {
@@ -56,5 +61,10 @@ public class Tank : MonoBehaviour
     void DestroyObject()
     {
         Destroy(gameObject);
+    }
+
+    void ChangeHPBar()
+    {
+        hpBar.GetComponent<Image>().fillAmount = (float)enemyHitPoints / (float)maxHP;
     }
 }

@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
             {
                 tank.transform.position = rightSpawnPos.transform.position;
                 tank.transform.localScale = new Vector3(tank.transform.localScale.x * -1, tank.transform.localScale.y, tank.transform.localScale.z);
+                var healthBar = tank.transform.GetChild(2);
+                healthBar.localScale = new Vector3(healthBar.transform.localScale.x * -1, healthBar.transform.localScale.y, healthBar.transform.localScale.z);
             }
         }
 
