@@ -13,17 +13,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float spawnRate = 1f;
     [SerializeField] public bool isGameActive = true;
     [SerializeField] private GameObject gameOverUI;
-    private Buildings buildings;
-    private TextMeshProUGUI scoreText;
-    private Tank tankClass;
+    [SerializeField] private Buildings buildings;
+    [SerializeField] private TextMeshProUGUI scoreText;
     public int score = 0;
 
 
     private void Start()
     {
         StartCoroutine(SpawnTarget());
-        scoreText = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
-        buildings = GameObject.Find("Buildings").GetComponent<Buildings>();
         scoreText.text = "Score: " + score;
     }
 

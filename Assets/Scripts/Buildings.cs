@@ -13,7 +13,7 @@ public class Buildings : MonoBehaviour
     private void Start()
     {
         maxHP= hitPoints;
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

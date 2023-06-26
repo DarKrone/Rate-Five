@@ -21,7 +21,7 @@ public class Tank : MonoBehaviour
     {
         maxHP = enemyHitPoints;
         pointToMove = GameObject.Find("Point To Move");
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     private void FixedUpdate()
     {
@@ -29,9 +29,7 @@ public class Tank : MonoBehaviour
         {
             transform.position += (pointToMove.transform.position - transform.position).normalized * moveSpeed * Time.fixedDeltaTime;
         }
-        
-
-        if (!gameManager.isGameActive)
+        else
         {
             GetComponent<Animator>().enabled = false;
             GetComponent<AudioSource>().Pause();
