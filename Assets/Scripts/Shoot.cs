@@ -18,7 +18,7 @@ public class Shoot : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // проверка что нажата кнопка выстрела
     {
         if (Input.GetMouseButtonDown(0) && gameManager.GetComponent<GameManager>().isGameActive)
         {
@@ -30,7 +30,7 @@ public class Shoot : MonoBehaviour
         }
     }
 
-    private void Fire(Vector2 dir)
+    private void Fire(Vector2 dir) // функция выстрела
     {
         audioSource.Play();
         GameObject bullet = Instantiate(bulletPrefab);

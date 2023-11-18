@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(buildings.hitPoints <= 0)
+        if(buildings.hitPoints <= 0) // остановка игры если проиграли
         {
             isGameActive= false;
             gameOverUI.SetActive(true);
@@ -37,9 +37,9 @@ public class GameManager : MonoBehaviour
             buildings.GetComponent<AudioSource>().Pause();
         }
     }
-    IEnumerator SpawnTarget()
+    IEnumerator SpawnTarget() // спавним врагов каждое определенное количество времени
     {
-        while (isGameActive)
+        while (isGameActive) 
         {
             yield return new WaitForSeconds(spawnRate);
             GameObject tank = Instantiate(tankPrefab);
@@ -59,13 +59,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void UpdateScore(int value)
+    public void UpdateScore(int value) // обновляем счёт
     {
         score += value;
         scoreText.text = "Score: " + score;
     }
 
-    public void Quit()
+    public void Quit() // выход из игры
     {
         Application.Quit();
     }

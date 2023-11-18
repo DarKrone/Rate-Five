@@ -17,7 +17,7 @@ public class Buildings : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collision.gameObject.CompareTag("Enemy")) // обработка события если враг вьехал в здание
         {
             hitPoints -= 1;
             Destroy(collision.gameObject);
@@ -27,7 +27,7 @@ public class Buildings : MonoBehaviour
         }
     }
 
-    void ChangeHPBar()
+    void ChangeHPBar() // изменение полоски хп
     {
         health.GetComponent<Image>().fillAmount = (float)hitPoints / (float)maxHP;
     }

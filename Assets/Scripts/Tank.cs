@@ -25,11 +25,11 @@ public class Tank : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (gameManager.isGameActive)
+        if (gameManager.isGameActive) // двигаем врага к зданию
         {
             transform.position += (pointToMove.transform.position - transform.position).normalized * moveSpeed * Time.fixedDeltaTime;
         }
-        else
+        else 
         {
             GetComponent<Animator>().enabled = false;
             GetComponent<AudioSource>().Pause();
@@ -39,7 +39,7 @@ public class Tank : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet")) // обработка при столкновении со снарядом
         {
             enemyHitPoints--;
             hitSound.GetComponent<AudioSource>().Play();
